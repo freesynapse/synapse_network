@@ -1,0 +1,26 @@
+void NeuralNetwork::linearBackward(const Matrix& _dZ, size_t _layer)
+{
+    #ifdef DEBUG_NEURAL_NET
+        std::cout << __PRETTY_FUNCTION__ << ":\n";
+        std::cout << "layer " << _layer << "\n";
+    #endif
+
+    Matrix A_prev = m_A[_layer];
+
+    float div = 1.0f / (float)A_prev.cols();
+
+    m_dW[_layer] = div * (_dZ * A_prev.transpose()).array();
+    m_db[_layer] = div * _dZ.rowwise().sum();
+    m_dA[_layer] = m_W[_layer].transpose() * _dZ;
+
+    #ifdef DEBUG_NEURAL_NET
+        std::cout << "A_prev : shape = " << shape<Matrix>(A_prev) << "\n" << A_prev << "\n";
+        std::cout << "dZ     : shape = " << shape<Matrix>(_dZ) << "\n" << _dZ <<"\n";
+        std::cout << "dW     : shape = " << shape<Matrix>(m_dW[_layer]) << "\n" << m_dW[_layer] << "\n";
+        std::cout << "db     : shape = " << shape<ColVector>(m_db[_layer]) << "\n" << m_db[_layer] << "\n";
+        std::cout << "dA_prev: shape = " << shape<Matrix>(m_dA[_layer]) << "\n" << m_dA[_layer] << "\n";
+        std::cout << "\n";
+    #endif
+}
+//---------------------------------------------------------------------------------------
+    void linearBackward(const Matrix& _dZ, size_t _layer);
