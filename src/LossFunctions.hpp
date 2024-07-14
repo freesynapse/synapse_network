@@ -57,6 +57,7 @@ private:
 //---------------------------------------------------------------------------------------
 class CategoricalCrossEntropy : public LossFunction
 {
+    // TODO : implement me!
 private:    
     inline double compute(Matrix& _AL, Matrix& _Y) override
     {
@@ -73,6 +74,7 @@ private:
 //---------------------------------------------------------------------------------------
 class MeanSquaredError : public LossFunction
 {
+    // TODO : implement me!
 private:
     inline double compute(Matrix& _AL, Matrix& _Y) override
     {
